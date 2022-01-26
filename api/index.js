@@ -7,7 +7,13 @@ const getPluginDownloads = (allReleases) => {
         totalDownloads += details.downloadCount;
     });
 
-    const latestReleaseVersion = Object.keys(allReleases).sort(compareVersions).slice(-1)[0] ;
+    let latestReleaseVersion;
+    try {
+        latestReleaseVersion = Object.keys(allReleases).sort(compareVersions).slice(-1)[0];
+    } catch (err) {
+        latestReleaseVersion = Object.keys(allReleases).slice(-1)[0];
+    }
+
     const latestRelease = {
         version: latestReleaseVersion,
         ...allReleases[latestReleaseVersion],
