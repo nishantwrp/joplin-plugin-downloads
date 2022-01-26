@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/nishantwrp/joplin-plugin-downloads#readme",
   "dependencies": {
-    "axios": "^0.25.0"
+    "axios": "^0.25.0",
+    "compare-versions": "^4.1.3"
   }
 }

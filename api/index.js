@@ -1,16 +1,17 @@
 const axios = require("axios").default;
+const compareVersions = require("compare-versions");
 
 const getPluginDownloads = (allReleases) => {
     let totalDownloads = 0;
-    let latestRelease = null;
-
     Object.entries(allReleases).forEach(([release, details]) => {
         totalDownloads += details.downloadCount;
-        latestRelease = {
-            version: release,
-            ...details,
-        };
     });
+
+    const latestReleaseVersion = Object.keys(allReleases).sort(compareVersions).slice(-1)[0] ;
+    const latestRelease = {
+        version: latestReleaseVersion,
+        ...allReleases[latestReleaseVersion],
+    };
 
     return {
         totalDownloads,
